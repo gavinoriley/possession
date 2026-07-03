@@ -66,20 +66,15 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #0b0b0d; /* Soft premium cinematic off-black */
+            background: #0b0b0d; 
             z-index: 9999;
             pointer-events: none;
-            /* 0.5s initial hold delay, 0.85s incredibly silky cubic easing curve */
             animation: swipeUpwards 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.5s forwards;
         }
 
         @keyframes swipeUpwards {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-100%);
-            }
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
         }
 
         /* === TOP GRADIENT SHADOW === */
@@ -89,7 +84,6 @@
             left: 0;
             width: 100vw;
             height: 180px;
-            /* Multi-stop eased shadow gradient to soften layout drop-off completely */
             background: linear-gradient(to bottom, 
                 rgba(0,0,0,1) 0%, 
                 rgba(0,0,0,0.92) 25%, 
@@ -125,20 +119,10 @@
             transition: all 0.3s ease-in-out;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.9);
         }
-        /* Custom line-length variance: Top Long, Middle Short, Bottom Long */
-        .menu-toggle span:nth-child(2) {
-            width: 70%;
-        }
-        /* Hamburger Animation to 'X' */
-        .menu-toggle.open span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .menu-toggle.open span:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.open span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
+        .menu-toggle span:nth-child(2) { width: 70%; }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         /* === FULLSCREEN NAVIGATION OVERLAY === */
         .nav-overlay {
@@ -159,10 +143,7 @@
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
         }
-        .nav-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
+        .nav-overlay.open { opacity: 1; visibility: visible; }
         .nav-overlay a {
             color: #fff;
             text-decoration: none;
@@ -170,13 +151,8 @@
             letter-spacing: 2px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
-        .nav-overlay a:hover {
-            color: #ff4444;
-            transform: scale(1.05);
-        }
-        .nav-overlay a.dev-room-link {
-            animation: demonic-glow-pulse 1.8s ease-in-out infinite;
-        }
+        .nav-overlay a:hover { color: #ff4444; transform: scale(1.05); }
+        .nav-overlay a.dev-room-link { animation: demonic-glow-pulse 1.8s ease-in-out infinite; }
 
         /* === FIRST SCREEN SOCIAL DOCK === */
         .hero-socials {
@@ -188,11 +164,7 @@
             z-index: 110;
             align-items: center;
         }
-        .hero-socials a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
+        .hero-socials a { display: flex; align-items: center; text-decoration: none; }
         .hero-socials img {
             height: 32px; 
             width: auto;
@@ -202,9 +174,7 @@
             will-change: opacity; 
             transform: translateZ(0); 
         }
-        .hero-socials a:hover img {
-            opacity: 0.5;
-        }
+        .hero-socials a:hover img { opacity: 0.5; }
 
         /* === TITLE / HERO SECTION === */
         .title-section {
@@ -214,7 +184,6 @@
             position: relative;
         }
 
-        /* === NEW BACKGROUND VIDEO ENGINE STYLES === */
         .hero-video-container {
             position: relative;
             width: 100vw;
@@ -228,12 +197,14 @@
             top: 50%;
             left: 50%;
             width: 100vw;
-            height: 56.25vw; /* Fixed 16:9 Aspect Calculation */
+            height: 56.25vw; 
             min-height: 100vh;
-            min-width: 177.77vh; /* Fixed 16:9 Scale Fallback */
-            transform: translate(-50%, -50%); /* Keeps video dead-centered perfectly with no cutoff scale */
+            min-width: 177.77vh; 
+            /* PERFORMANCE FIX: Using translate3d pushes the video layer rendering onto the GPU */
+            transform: translate3d(-50%, -50%, 0); 
             pointer-events: none; 
             z-index: 1;
+            will-change: transform;
         }
 
         .video-background video {
@@ -241,6 +212,9 @@
             height: 100%;
             object-fit: cover;
             border: none;
+            /* PERFORMANCE FIX: Prevents flickering and forces hardware acceleration frames */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .logo-overlay {
@@ -253,7 +227,7 @@
             justify-content: center;
             align-items: center;
             z-index: 2;
-            background: rgba(0, 0, 0, 0.25); /* Subtle dimming overlay so the logo text is highly readable */
+            background: rgba(0, 0, 0, 0.25); 
         }
 
         .logo-overlay img {
@@ -262,14 +236,9 @@
             height: auto;
         }
 
-        /* Demonic Pulse Animation */
         @keyframes demonic-glow-pulse {
-            0%, 100% {
-                text-shadow: 0 0 8px #ff4444, 0 0 18px #ff4444, 0 0 35px #ff0000;
-            }
-            50% {
-                text-shadow: 0 0 20px #ff4444, 0 0 40px #ff4444, 0 0 70px #ff0000, 0 0 100px #ff8866;
-            }
+            0%, 100% { text-shadow: 0 0 8px #ff4444, 0 0 18px #ff4444, 0 0 35px #ff0000; }
+            50% { text-shadow: 0 0 20px #ff4444, 0 0 40px #ff4444, 0 0 70px #ff0000, 0 0 100px #ff8866; }
         }
 
         /* === SECTIONS GENERAL === */
@@ -313,9 +282,7 @@
             font-size: 16px;
             transition: color 0.3s ease;
         }
-        .business-links a:hover {
-            color: #fff;
-        }
+        .business-links a:hover { color: #fff; }
         
         .news-section img,
         .video-section iframe,
@@ -364,43 +331,19 @@
                 width: 24px;
                 height: 16px;
             }
-            .menu-toggle span {
-                height: 2px;
-            }
+            .menu-toggle span { height: 2px; }
             .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-            .top-shadow {
-                height: 120px;
-            }
-            .nav-overlay a {
-                font-size: 26px;
-            }
-            .hero-socials {
-                top: 30px;
-                right: 30px;
-                gap: 16px;
-            }
-            .hero-socials img {
-                height: 26px; 
-            }
-            .title-section {
-                padding-top: 0; 
-            }
-            .hero-video-container {
-                height: 60vh; 
-            }
-            .business-links {
-                gap: 15px;
-                flex-wrap: wrap;
-            }
-            .business-links a {
-                font-size: 12px;
-            }
-            section {
-                padding: 0;
-                min-height: auto;
-            }
+            .top-shadow { height: 120px; }
+            .nav-overlay a { font-size: 26px; }
+            .hero-socials { top: 30px; right: 30px; gap: 16px; }
+            .hero-socials img { height: 26px; }
+            .title-section { padding-top: 0; }
+            .hero-video-container { height: 60vh; }
+            .business-links { gap: 15px; flex-wrap: wrap; }
+            .business-links a { font-size: 12px; }
+            section { padding: 0; min-height: auto; }
         }
     </style>
     <script type="application/ld+json">
@@ -465,14 +408,14 @@
             <section class="title-section">
                 <div class="hero-video-container">
                     <div class="video-background">
-                        <video autoplay muted loop playsinline>
+                        <video autoplay muted loop playsinline preload="auto">
                             <source src="https://gavinoriley.github.io/assets/Hamachi%20the%20Psychotic%20Killer%20Release%20Trailer.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
                     
                     <div class="logo-overlay">
-                        <img src="https://gavinoriley.github.io/assets/ScreenshotHomePage.png" alt="Hamachi the Psychotic Killer game title logo">
+                        <img src="https://gavinoriley.github.io/assets/ScreenHomePageOver.png" alt="Hamachi the Psychotic Killer game title logo">
                     </div>
                 </div>
                 
