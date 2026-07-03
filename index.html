@@ -3,38 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamachi the Psychotic Killer Page</title>
+    <title>Hamachi the Psychotic Killer</title>
+    <meta name="description" content="HAMACHI THE PSYCHOTIC KILLER: The platformer game where you can play as the BAD GUY.">
+    <meta name="keywords" content="Hamachi the Psychotic Killer, video game, indie game, action game, 2d game, platformer">
+    <meta property="og:title" content="Hamachi the Psychotic Killer">
+    <meta property="og:description" content="HAMACHI THE PSYCHOTIC KILLER: The platformer game where you can play as the BAD GUY.">
+    <meta property="og:image" content="https://gavinoriley.github.io/assets/ScreenshotHomePage.png">
+    <meta property="og:url" content="https://hamachithepsychotickiller.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hamachi the Psychotic Killer">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hamachi the Psychotic Killer">
+    <meta name="twitter:description" content="HAMACHI THE PSYCHOTIC KILLER: The platformer game where you can play as the BAD GUY.">
+    <meta name="twitter:image" content="https://gavinoriley.github.io/assets/ScreenshotHomePage.png">
+    <meta name="twitter:site" content="@imgavinoriley">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://hamachithepsychotickiller.com">
+    <link rel="icon" type="image/x-icon" href="https://gavinoriley.github.io/assets/hamafavi.ico">
     <link rel="preload" href="/assets/FSEX300.woff2" as="font" type="font/woff2" crossorigin>
-
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://store.steampowered.com">
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
-
     <style>
         @font-face {
             font-family: 'FSEX300';
             src: url('/assets/FSEX300.woff2') format('woff2'),
-                 url('/assets/FSEX300.woff') format('woff'),
-                 url('/assets/FSEX300.ttf') format('truetype');
+                url('/assets/FSEX300.woff') format('woff'),
+                url('/assets/FSEX300.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
         }
         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'FSEX300', Arial, sans-serif;
             cursor: url('https://gavinoriley.github.io/assets/sprCursor_3.png'), auto;
         }
         body {
-            margin: 0 auto;
-            max-width: 1400px;
-            padding: 20px;
-            background-color: black;
-            background-image: url('https://gavinoriley.github.io/assets/hamabackgrounddark.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
+            background: #000000;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
         }
-
         /* Lenis Recommended Styles */
         html.lenis {
             height: auto;
@@ -46,431 +59,381 @@
             overflow: hidden;
         }
 
-        .navbar {
+        /* === HAMBURGER MENU BUTTON === */
+        .menu-toggle {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            padding: 9px 0;
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            z-index: 1000;
-            border-bottom: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-        }
-        .navbar a {
-            font-family: 'FSEX300', Arial, sans-serif;
-            color: #fff;
-            text-decoration: none;
-            font-size: 24px;
-            padding: 6px 14px;
-            border-radius: 4px;
-            transition: color 0.3s ease;
-        }
-        .navbar a:hover {
-            color: #cccccc;
-        }
-        @media (max-width: 768px) {
-            .navbar {
-                gap: 20px;
-                flex-wrap: wrap;
-                padding: 8px 0;
-            }
-            .navbar a {
-                font-size: 16px;
-            }
-        }
-        h1 {
-            text-align: center;
-            color: white;
-            margin-top: 90px;
-            margin-bottom: 10px;
-        }
-        .asset-load-note {
-            text-align: center;
-            color: white;
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
-        h2.red {
-            color: #ff3333;
-            margin-top: 40px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-        .red-button {
-            display: block;
-            padding: 12px 24px;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            width: 220px;
-            background-color: #ff3333;
-            margin: 10px;
-        }
-        .red-button:hover {
-            background-color: #cc2222;
-        }
-        .top-section {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 60px;
-            align-items: flex-start;
-        }
-        .factsheet-block {
-            flex: 1;
-            background-color: rgba(0,0,0,0.8);
-            padding: 25px;
-            border-radius: 10px;
-        }
-        @media (max-width: 900px) {
-            .top-section { flex-direction: column; }
-        }
-        .logos-container, .videos-container, .screenshots-container, .awards-container, .contact-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin: 20px 0;
-            background-color: rgba(0,0,0,0.7);
-            border-radius: 10px;
-            padding: 30px;
-        }
-        .logo-image {
-            width: 300px;
-            height: auto;
-            display: block;
-            cursor: pointer;
-        }
-        .video-wrapper {
-            flex: 1 1 300px;
-            max-width: 560px;
-        }
-        .video-wrapper iframe {
-            width: 100%;
-            height: 315px;
+            top: 25px;
+            left: 25px;
+            width: 28px;
+            height: 18px;
+            background: none;
             border: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 200;
+            mix-blend-mode: difference;
         }
-        .award-image {
-            max-width: 800px;
-            width: 100%;
-            height: auto;
-        }
-        .carousel {
-            position: relative;
-            max-width: 800px;
-            margin: auto;
-        }
-        .carousel-item {
-            display: none;
-            width: 100%;
-        }
-        .carousel-item.active {
+        .menu-toggle span {
             display: block;
-        }
-        .carousel-item img {
             width: 100%;
-            height: auto;
-            cursor: pointer;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 1px;
+            transition: all 0.3s ease-in-out;
         }
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            color: white;
-            font-weight: bold;
-            background-color: rgba(0,0,0,0.5);
-            user-select: none;
+        /* Hamburger Animation to 'X' */
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
         }
-        .next { right: 0; }
-        .modal {
-            display: none;
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* === FULLSCREEN NAVIGATION OVERLAY === */
+        .nav-overlay {
             position: fixed;
-            z-index: 1001;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            padding-top: 60px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90vw;
-            max-height: 90vh;
-            width: auto;
-            height: auto;
+        .nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
         }
-        .close {
+        .nav-overlay a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 36px;
+            letter-spacing: 2px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .nav-overlay a:hover {
+            color: #ff4444;
+            transform: scale(1.05);
+        }
+        .nav-overlay a.buy-game-link {
+            color: #ffdd88;
+        }
+        .nav-overlay a.buy-game-link:hover {
+            color: #e6b55c;
+        }
+        .nav-overlay a.dev-room-link {
+            animation: demonic-glow-pulse 1.8s ease-in-out infinite;
+        }
+
+        /* === FIRST SCREEN SOCIAL DOCK === */
+        .hero-socials {
             position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
+            top: 25px;
+            right: 25px;
+            display: flex;
+            gap: 20px;
+            z-index: 110;
+            align-items: center;
         }
-        .contact-container p {
-            margin: 10px 0;
-            font-size: 18px;
-            text-align: center;
-        }
-        .contact-container a {
-            color: #00bfff;
+        .hero-socials a {
+            display: flex;
+            align-items: center;
             text-decoration: none;
         }
-        .contact-container a:hover {
-            text-decoration: underline;
+        .hero-socials img {
+            height: 25px;
+            width: auto;
+            display: block;
+            opacity: 1; /* Fixes immediate layout-swap on mouse entry */
+            transition: opacity 0.3s ease-in-out; /* Symmetrical fading curve both ways */
         }
-        .screenshot-caption {
-            text-align: center;
-            margin-top: 8px;
-            font-size: 15px;
-            color: #ddd;
+        .hero-socials a:hover img {
+            opacity: 0.5;
         }
-        .roblox-render-container {
+
+        /* === TITLE / HERO SECTION === */
+        .title-section {
+            background-color: #000000;
+            padding: 0;
+            min-height: 0;
+        }
+
+        /* Demonic Pulse Animation */
+        @keyframes demonic-glow-pulse {
+            0%, 100% {
+                text-shadow: 0 0 8px #ff4444, 0 0 18px #ff4444, 0 0 35px #ff0000;
+            }
+            50% {
+                text-shadow: 0 0 20px #ff4444, 0 0 40px #ff4444, 0 0 70px #ff0000, 0 0 100px #ff8866;
+            }
+        }
+
+        /* === SECTIONS GENERAL === */
+        section {
+            width: 100vw;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+        }
+        .news-section, .video-section, .about-section, .roadblock-section,
+        .characters-section, .worlds-section, .business-section {
+            background-color: #000000;
+            color: #fff;
+            height: auto;
+            padding: 0;
+            min-height: 0;
+        }
+        .video-section iframe {
+            aspect-ratio: 16 / 9;
+            border: none;
+        }
+        .business-section {
+            padding: 40px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-            width: 100%;
+            border-top: 1px solid #111;
         }
-        .roblox-render-container img {
-            max-width: 400px;
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-            transition: transform 0.2s ease;
+        .business-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
         }
-        .roblox-render-container img:hover {
-            transform: scale(1.02);
-        }
-        .roblox-text-link {
-            color: #00bfff;
+        .business-links a {
+            color: #888;
             text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
         }
-        .roblox-text-link:hover {
-            text-decoration: underline;
+        .business-links a:hover {
+            color: #fff;
+        }
+        
+        .title-section img,
+        .news-section img,
+        .video-section iframe,
+        .about-section img,
+        .roadblock-section img,
+        .characters-section img,
+        .worlds-section img {
+            width: 100vw;
+            height: auto;
+            display: block;
+        }
+
+        .carousel {
+            width: 100vw;
+            height: calc(100vw * 3 / 16);
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-inner {
+            display: flex;
+            animation: scroll 40s linear infinite;
+        }
+        .carousel-inner img {
+            width: calc(100vw / 3);
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100vw * 11 / 3)); }
+        }
+        footer {
+            background-color: #000000;
+            color: #555;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            border-top: 1px solid #111;
+        }
+
+        /* === RESPONSIVE STYLING === */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                top: 20px;
+                left: 20px;
+                width: 24px;
+                height: 16px;
+            }
+            .menu-toggle span {
+                height: 2px;
+            }
+            .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+            .nav-overlay a {
+                font-size: 26px;
+            }
+            .hero-socials {
+                top: 20px;
+                right: 20px;
+                gap: 16px;
+            }
+            .hero-socials img {
+                height: 20px;
+            }
+            .title-section {
+                padding-top: 60px;
+            }
+            .business-links {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            .business-links a {
+                font-size: 12px;
+            }
+            section {
+                padding: 0;
+                min-height: auto;
+            }
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Hamachi the Psychotic Killer",
+      "description": "HAMACHI THE PSYCHOTIC KILLER: The platformer game where you can play as the BAD GUY.",
+      "image": "https://gavinoriley.github.io/assets/ScreenshotHomePage.png",
+      "url": "https://hamachithepsychotickiller.com",
+      "genre": "Action, Platformer, Indie",
+      "gamePlatform": "PC",
+      "publisher": {
+        "@type": "Person",
+        "name": "Gavin ORiley"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="https://hamachithepsychotickiller.com">VISIT MAIN WEBSITE</a>
-        <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank">VISIT STEAM PAGE</a>
+
+    <button class="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="nav-overlay">
+        <a href="https://hamachithepsychotickiller.com/about/" class="menu-link">GAME INFO</a>
+        <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank" class="buy-game-link menu-link">BUY GAME</a>
+        <a href="https://itch.io/embed-upload/16876356?color=333333" target="_blank" class="menu-link">PLAY ONLINE DEMO</a>
+        <a href="https://hamachithepsychotickiller.com/devroom/" class="dev-room-link menu-link">DEV ROOM</a>
+        <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3355690/manuals/cbeecc8fd965c68b6d64b82a593dafd5da4b0412/2hamachi-the-psychotic-killer-manual.pdf?t=1746692821" target="_blank" class="menu-link" style="font-size: 20px; color: #888;">GAME MANUAL</a>
     </nav>
-    <h1>Hamachi the Psychotic Killer</h1>
-    <p class="asset-load-note">The world's first traditional 2D platformer that lets you play as a serial killer.</p>
-  
-    <div style="max-width: 1000px; margin: 0 auto 50px; border-radius: 30px; overflow: hidden;">
-        <iframe width="100%" height="562" src="https://www.youtube.com/embed/VbFZFto8Naw" frameborder="0" allowfullscreen></iframe>
+
+    <div class="hero-socials">
+        <a href="https://x.com/imgavinoriley" target="_blank" aria-label="Follow Gavin O'Riley on X">
+            <img src="https://gavinoriley.github.io/assets/whitex.png" alt="X Icon">
+        </a>
+        <a href="https://www.youtube.com/@hamachithepsychotickiller" target="_blank" aria-label="Hamachi the Psychotic Killer YouTube Channel">
+            <img src="https://gavinoriley.github.io/assets/whiteyoutube.png" alt="YouTube Icon">
+        </a>
+        <a href="https://www.tiktok.com/@YOUR_HANDLES_HERE" target="_blank" aria-label="Hamachi the Psychotic Killer TikTok Profile">
+            <img src="https://gavinoriley.github.io/assets/whitetiktok.png" alt="TikTok Icon">
+        </a>
     </div>
-    <div style="text-align: center; margin-bottom: 60px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank" class="red-button">STEAM PAGE</a>
-        <a href="https://itch.io/embed-upload/16876356?color=333333" target="_blank" class="red-button">PLAY ONLINE DEMO</a>
-    </div>
-    <h2 id="traction" class="red">Awards</h2>
-    <div class="awards-container">
-        <img src="https://gavinoriley.github.io/assets/dreamhack1.JPG" alt="DreamHack Award" class="award-image" onclick="openModal(this.src)">
-        <img src="https://gavinoriley.github.io/assets/awardlaur.png" alt="Awards Graphic" class="award-image" onclick="openModal(this.src)">
+
+    <div id="wrapper">
+        <main id="container">
+            
+            <section class="title-section">
+                <img src="https://gavinoriley.github.io/assets/ScreenshotHomePage.png" alt="Hamachi the Psychotic Killer game title logo">
+                
+                <div class="carousel">
+                    <div class="carousel-inner">
+                        <img src="https://gavinoriley.github.io/assets/finalcara1.jpg" alt="Gameplay screenshot from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara2.jpg" alt="In-game environment from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara3.jpg" alt="Character action scene from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara4.png" alt="Level design from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara5.png" alt="Game feature showcase from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara6.png" alt="Dynamic gameplay moment from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara7.png" alt="Unique game art from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara8.jpg" alt="Promotional image for Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara9.jpg" alt="Additional gameplay screenshot from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara10.jpg" alt="Another in-game environment from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara11.jpg" alt="Extended promotional image for Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara1.jpg" alt="Gameplay screenshot from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara2.jpg" alt="In-game environment from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara3.jpg" alt="Character action scene from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara4.png" alt="Level design from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara5.png" alt="Game feature showcase from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara6.png" alt="Dynamic gameplay moment from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara7.png" alt="Unique game art from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara8.jpg" alt="Promotional image for Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara9.jpg" alt="Additional gameplay screenshot from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara10.jpg" alt="Another in-game environment from Hamachi the Psychotic Killer">
+                        <img src="https://gavinoriley.github.io/assets/finalcara11.jpg" alt="Extended promotional image for Hamachi the Psychotic Killer">
+                    </div>
+                </div>
+            </section>
+            
+            <section class="news-section">
+                <a href="https://x.com/imgavinoriley/status/2068302846442000537" target="_blank" rel="noopener noreferrer">
+                    <img src="https://gavinoriley.github.io/assets/FinalClipBannerclickme.png" alt="Hamachi the Psychotic Killer">
+                </a>
+            </section>
+            
+            <section class="video-section">
+                <iframe src="https://www.youtube.com/embed/VbFZFto8Naw" title="Hamachi the Psychotic Killer - Gameplay Trailer #2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </section>
+            
+            <section class="roadblock-section">
+                <img src="https://gavinoriley.github.io/assets/3BLOCkRESTHAMACHI.png" alt="Roadblock and gameplay features for Hamachi the Psychotic Killer">
+            </section>
+            
+            <section class="about-section">
+                <img src="https://gavinoriley.github.io/assets/FinalIntroduction.png" alt="Introduction screenshot for Hamachi the Psychotic Killer">
+            </section>
+            
+            <section class="characters-section">
+                <img src="https://gavinoriley.github.io/assets/FinalCharacters.png" alt="Character lineup for Hamachi the Psychotic Killer">
+            </section>
+            
+            <section class="worlds-section">
+                <img src="https://gavinoriley.github.io/assets/FinalWorlds2.png" alt="World environments in Hamachi the Psychotic Killer">
+            </section>
+            
+            <section class="business-section">
+                <div class="business-links">
+                    <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3355690/manuals/cbeecc8fd965c68b6d64b82a593dafd5da4b0412/2hamachi-the-psychotic-killer-manual.pdf?t=1746692821" target="_blank">Game Manual</a>
+                    <a href="https://x.com/imgavinoriley" target="_blank">𝕏</a>
+                    <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3355690/manuals/4d24f19e6c5b25a41f86c5655abce55091d9eebc/hamachicube.pdf?t=1746692821" target="_blank">Hamachi Cube</a>
+                    <a href="https://www.youtube.com/@hamachithepsychotickiller" target="_blank">YouTube</a>
+                    <a href="mailto:img.oriley@gmail.com?subject=Contact%20from%20Hamachi%20the%20Psychotic%20Killer%20page">Contact</a>
+                </div>
+            </section>
+        </main>
+        <footer id="footer-contents">
+            <p>© 2026 Hamachi the Psychotic Killer. All rights reserved.</p>
+        </footer>
     </div>
     
-    <h2 class="red">Roblox 3D Fan Adaptation</h2>
-    <div class="videos-container" style="flex-direction: column; align-items: center;">
-        
-        <p style="text-align: center; max-width: 900px; line-height: 1.6; font-size: 16px; margin-bottom: 25px;">
-            Hamachi will be featured as a playable killer in the upcoming Roblox game, The Deep Silence, which is currently in development. 
-            <a href="https://x.com/TheDeepRoblox" target="_blank" class="roblox-text-link">Click here to view their work!</a>
-            <br><br>
-            <span style="font-style: italic; color: #cccccc; display: block; font-size: 15px;">Note: I am not affiliated with the development of The Deep Silence, nor is The Deep Silence development team affiliated with the development of Hamachi the Psychotic Killer. All credit for The Deep Silence belongs to its development team.</span>
-        </p>
-
-        <div class="video-wrapper" style="flex: 0 0 auto; max-width: 900px; width: 100%;">
-            <iframe src="https://drive.google.com/file/d/1nj5ezBpLL-szqQZ-ElnoiPgdA0qZFoAp/preview" width="900" height="675" style="width: 100%; height: 675px; border: none;" allowfullscreen></iframe>
-        </div>
-
-        <div class="roblox-render-container">
-            <img src="https://gavinoriley.github.io/assets/Hamachi_RenderAlt.png" alt="Hamachi Roblox Render Alternative" onclick="openModal(this.src)">
-            <img src="https://gavinoriley.github.io/assets/Hamachi_Render.png" alt="Hamachi Roblox Render" onclick="openModal(this.src)">
-        </div>
-
-        <div class="video-wrapper" style="max-width: 1000px; width: 100%;">
-            <iframe width="100%" height="562" src="https://www.youtube.com/embed/C7lAc6bOt4k" frameborder="0" allowfullscreen style="width: 100%; height: 562px; border: none;"></iframe>
-            <p style="text-align: center;">Powerup Theme</p>
-        </div>
-    </div>
-    
-    <h2 class="red">Fan Art (Select examples, there are over 40+ pieces of original fan art now!)</h2>
-    <div class="screenshots-container">
-        <div class="carousel" id="fanart-carousel">
-            <div class="carousel-item active">
-                <img src="https://gavinoriley.github.io/assets/communityfan1.jpg" alt="Fan Art 1" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: forestdraw</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/officialsketch.png" alt="Fan Art 10" onclick="openModal(this.src)">
-                <p class="screenshot-caption">official character sketch</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan2.jpeg" alt="Fan Art 2" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: Gameplanet Plays Games</p>
-            </div>
-           
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan4.jpeg" alt="Fan Art 4" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: Oz3l_art</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan5.jpeg" alt="Fan Art 5" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: confused eel</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan6.jpeg" alt="Fan Art 6" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: wafflez</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan7.jpg" alt="Fan Art 7" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: default_guy</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan8.png" alt="Fan Art 8" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: holl</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan9.jpeg" alt="Fan Art 9" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: sebas | Super Smash Bros. Custom Stage</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/communityfan10.png" alt="Fan Art 10" onclick="openModal(this.src)">
-                <p class="screenshot-caption">credits: unknown</p>
-            </div>
-        
-            <a class="prev">&#10094;</a><a class="next">&#10095;</a>
-        </div>
-    </div>
-    <div class="top-section" id="factsheet">
-        <div class="factsheet-block">
-            <h2 class="red">Factsheet</h2>
-            <p><strong>Developer:</strong> Gavin ORiley (Los Angeles, CA)</p>
-            <p><strong>Release Date:</strong> February 27, 2026</p>
-            <p><strong>Genre:</strong> Horror / 2D Platformer</p>
-            <p><strong>Features:</strong> Kill Counter System, 3 Endings, 8 Original Worlds.</p>
-        </div>
-    </div>
-    <h2 id="assets" class="red">Brand Assets & Logos (click to enlarge)</h2>
-    <div class="logos-container">
-        <img src="https://gavinoriley.github.io/assets/logohamachi1.png" class="logo-image" onclick="openModal(this.src)" alt="Logo 1">
-        <img src="https://gavinoriley.github.io/assets/logohamachi2.png" class="logo-image" onclick="openModal(this.src)" alt="Logo 2">
-        <img src="https://gavinoriley.github.io/assets/2HamachiTitleLogo.png" class="logo-image" onclick="openModal(this.src)" alt="Title Logo">
-    </div>
-    <h2 class="red">Gameplay Screenshots</h2>
-    <div class="screenshots-container">
-        <div class="carousel" id="screenshot-carousel">
-            <div class="carousel-item active">
-                <img src="https://gavinoriley.github.io/assets/finalcara1.jpg" alt="Screenshot 1" onclick="openModal(this.src)">
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/titleprev.png" alt="Screenshot 2" onclick="openModal(this.src)">
-                <p class="screenshot-caption">The title screen revolves from day to night based on your internal clock.</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara2.jpg" alt="Screenshot 3" onclick="openModal(this.src)">
-                <p class="screenshot-caption">Hamachi killing</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara3.jpg" alt="Screenshot 4" onclick="openModal(this.src)">
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara4.png" alt="Screenshot 5" onclick="openModal(this.src)">
-                <p class="screenshot-caption">Battle with a Demonic Boss</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara5.png" alt="Screenshot 6" onclick="openModal(this.src)">
-                <p class="screenshot-caption">Invincibility!</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara6.png" alt="Screenshot 7" onclick="openModal(this.src)">
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara7.png" alt="Screenshot 8" onclick="openModal(this.src)">
-                <p class="screenshot-caption">Battle with a Demonic Boss</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara8.jpg" alt="Screenshot 9" onclick="openModal(this.src)">
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara9.jpg" alt="Screenshot 10" onclick="openModal(this.src)">
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara10.jpg" alt="Screenshot 11" onclick="openModal(this.src)">
-                <p class="screenshot-caption">There is nothing left...</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/finalcara11.jpg" alt="Screenshot 12" onclick="openModal(this.src)">
-                <p class="screenshot-caption">Running from the law.</p>
-            </div>
-            <a class="prev">&#10094;</a><a class="next">&#10095;</a>
-        </div>
-    </div>
-    <h2 class="red">Multiple Endings</h2>
-    <div class="screenshots-container">
-        <div class="carousel" id="endings-carousel">
-            <div class="carousel-item active">
-                <img src="https://gavinoriley.github.io/assets/genoendingprev.gif">
-                <p style="text-align:center">Genocide Variance.</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/neuendingprev.gif">
-                <p style="text-align:center">Neutral Variance.</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://gavinoriley.github.io/assets/pacendingprev.gif">
-                <p style="text-align:center">Pacifist Variance.</p>
-            </div>
-            <a class="prev">&#10094;</a><a class="next">&#10095;</a>
-        </div>
-    </div>
-    <h2 class="red">Activities</h2>
-    <div class="contact-container">
-        <p><a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3355690/manuals/4d24f19e6c5b25a41f86c5655abce55091d9eebc/hamachicube.pdf?t=1772235351" target="_blank">can i live with you?</a></p>
-    </div>
-<h2 class="red">Contact</h2>
-<div class="contact-container">
-    <p>Email: <a href="mailto:img.oriley@gmail.com">img.oriley@gmail.com</a></p>
-    <p>
-        <a href="https://www.linkedin.com/in/gavin-oriley-2b146a352/" target="_blank">LinkedIn</a>
-        |
-        <a href="https://hamachithepsychotickiller.com" target="_blank">Official Site</a>
-    </p>
-    <p>
-        <a href="https://x.com/imgavinoriley" target="_blank">See our fans work on 𝕏!</a>
-    </p>
-    <p>
-        <a href="https://gamejolt.com/games/hamachithepsychotickiller/334593" target="_blank">GameJolt Page</a>
-    </p>
-</div>
-<p style="text-align:center; font-size:10px; margin:40px 0;">© 2026 Hamachi the Psychotic Killer. All rights reserved.</p>
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">×</span>
-        <img class="modal-content" id="img01">
-    </div>
-
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
     <script>
-        // Initialize Lenis with the same high-end inertial settings
         const lenis = new Lenis({
             lerp: 0.08,
             wheelMultiplier: 1.0,
@@ -484,59 +447,24 @@
             stopInertiaOnNavigate: true
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            function initCarousel(carouselId) {
-                const carousel = document.getElementById(carouselId);
-                if (!carousel) return;
-                let slideIndex = 1;
-                const slides = carousel.querySelectorAll('.carousel-item');
-                if (slides.length === 0) return;
-                const prevBtn = carousel.querySelector('.prev');
-                const nextBtn = carousel.querySelector('.next');
-                const showSlides = (n) => {
-                    if (n > slides.length) slideIndex = 1;
-                    if (n < 1) slideIndex = slides.length;
-                    slides.forEach(s => s.style.display = "none");
-                    slides[slideIndex - 1].style.display = "block";
-                };
-                if (prevBtn) prevBtn.onclick = () => showSlides(--slideIndex);
-                if (nextBtn) nextBtn.onclick = () => showSlides(++slideIndex);
-                showSlides(slideIndex);
-            }
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
 
-            initCarousel('fanart-carousel');
-            initCarousel('screenshot-carousel');
-            initCarousel('endings-carousel');
-        });
-
-        function openModal(src) {
-            const modal = document.getElementById("myModal");
-            const modalImg = document.getElementById("img01");
-            modal.style.display = "block";
-            modalImg.src = src;
+        function toggleMenu() {
+            menuToggle.classList.toggle('open');
+            navOverlay.classList.toggle('open');
         }
 
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none";
-        }
+        menuToggle.addEventListener('click', toggleMenu);
 
-        document.getElementById("myModal").onclick = function(e) {
-            if (e.target === this) closeModal();
-        };
-
-        // Support smooth anchor links with Lenis
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    lenis.scrollTo(targetElement, { duration: 1.2 });
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navOverlay.classList.contains('open')) {
+                    toggleMenu();
                 }
             });
         });
-
-        console.log('%c✅ Lenis inertial smooth scroll initialized on PlayMe page', 'color: #ffdd88; font-family: monospace;');
     </script>
 </body>
 </html>
