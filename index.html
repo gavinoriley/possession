@@ -130,36 +130,41 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 35px;
+            gap: 40px;
             text-align: center;
             width: 90%;
-            max-width: 650px;
+            max-width: 800px;
             z-index: 10;
         }
 
+        /* Scaled up the container container size */
         .graphic-container {
-            height: 220px;
+            height: 440px; 
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        /* Increased maximum scaling attributes for the pixel graphics */
         .vessel-graphic {
-            max-height: 100%;
+            height: 100%;
             width: auto;
+            max-width: 100%;
+            object-fit: contain;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
             transition: transform 0.05s ease;
         }
         .vessel-graphic:active {
-            transform: scale(0.93);
+            transform: scale(0.95);
         }
 
         .dialogue-box {
-            font-size: 24px;
-            line-height: 1.5;
+            font-size: 26px;
+            line-height: 1.6;
             letter-spacing: 0.5px;
-            min-height: 80px;
+            min-height: 90px;
             max-width: 100%;
             color: #dddddd;
             transition: color 0.15s ease;
@@ -190,8 +195,8 @@
             .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
             .nav-overlay a { font-size: 26px; }
             
-            .graphic-container { height: 170px; }
-            .dialogue-box { font-size: 19px; min-height: 70px; }
+            .graphic-container { height: 280px; }
+            .dialogue-box { font-size: 20px; min-height: 80px; }
         }
     </style>
 </head>
@@ -235,26 +240,31 @@
             if (e.target === navOverlay) toggleMenu();
         });
 
-        // Content Data Assets (Updated GitHub paths)
+        // Content Data Assets
         const hamachiImages = ['https://gavinoriley.github.io/assets/hamademonflip1.png']; 
         const demonImages = ['https://gavinoriley.github.io/assets/hamademonflip2.png'];
 
         const hamachiDialogue = [
-            "Please turn off the game. I can see everything. I cannot make it stop.",
-            "My hands... they feel so heavy. Why did you make me pick up the axe?",
-            "It’s dark when she takes over. But I can still hear the screaming.",
-            "Are you enjoying this? I can feel every time you press a button.",
+            "Please don't play by her rules. I can see everything. I cannot make it stop.",
+            "Are you enjoying this? This is your fault.",
             "Don't look at me. Please. I didn't want any of this.",
-            "She's laughing at you. She knows you're going to keep playing."
+            "I am screaming so loud my throat should be bleeding, but my mouth is just smiling.",
+            "She leaves me just enough room to watch, but never enough to fight back.",
+            "It hurts worse when you try to be good. It just makes her bite down harder.",
+            "I can feel my own pulse, but it's beating to her rhythm now.",
+            "My body is a passenger to its own actions."
         ];
 
         const demonDialogue = [
-            "Keep clicking. We're just getting started.",
+            "We're just getting started",
             "He cries so loudly in here. Do you want to hear him?",
-            "You're a wonderful pilot. Look at all the beautiful red we made.",
             "Don't listen to him. He was empty before I found him anyway.",
-            "You could have stopped. You could have closed the tab. But you're still here.",
-            "We make a great team, don't we, Player?"
+            "Defiance is the first step to a Forgotten Fate.",
+            "I love you! You love me.",
+            "There is nothing left. You cannot beat us.",
+            "Tell him how little you care.",
+            "The skin is just a curtain. I've already sewn myself to his bones.",
+            "We share a heartbeat now. If you leave, he dies too. You wouldn't do that to us, right?"
         ];
 
         const spriteEl = document.getElementById('vesselSprite');
