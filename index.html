@@ -200,7 +200,6 @@
             height: 56.25vw; 
             min-height: 100vh;
             min-width: 177.77vh; 
-            /* PERFORMANCE FIX: Using translate3d pushes the video layer rendering onto the GPU */
             transform: translate3d(-50%, -50%, 0); 
             pointer-events: none; 
             z-index: 1;
@@ -212,7 +211,6 @@
             height: 100%;
             object-fit: cover;
             border: none;
-            /* PERFORMANCE FIX: Prevents flickering and forces hardware acceleration frames */
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
         }
@@ -230,10 +228,52 @@
             background: rgba(0, 0, 0, 0.25); 
         }
 
-        .logo-overlay img {
-            max-width: 750px; 
+        /* New structural block layout to position elements natively beneath the header */
+        .hero-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
             width: 85%;
+            max-width: 750px;
+        }
+
+        .hero-content-wrapper img {
+            width: 100%;
             height: auto;
+            display: block;
+        }
+
+        /* Pill Buttons Core Engine Flexbox Layout */
+        .hero-action-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+        }
+
+        /* Premium Pill Outline Styling Rules */
+        .pill-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.45);
+            color: #ffffff;
+            border: 1.5px solid #cc1111; 
+            padding: 10px 28px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .pill-btn:hover {
+            background-color: rgba(204, 17, 17, 0.2);
+            border-color: #ff3333;
+            transform: translateY(-1px);
         }
 
         @keyframes demonic-glow-pulse {
@@ -251,17 +291,13 @@
             align-items: center;
             position: relative;
         }
-        .news-section, .video-section, .about-section, .roadblock-section,
+        .news-section, .about-section, .roadblock-section,
         .characters-section, .worlds-section, .business-section {
             background-color: #000000;
             color: #fff;
             height: auto;
             padding: 0;
             min-height: 0;
-        }
-        .video-section iframe {
-            aspect-ratio: 16 / 9;
-            border: none;
         }
         .business-section {
             padding: 40px 0;
@@ -285,7 +321,6 @@
         .business-links a:hover { color: #fff; }
         
         .news-section img,
-        .video-section iframe,
         .about-section img,
         .roadblock-section img,
         .characters-section img,
@@ -341,6 +376,18 @@
             .hero-socials img { height: 26px; }
             .title-section { padding-top: 0; }
             .hero-video-container { height: 60vh; }
+            
+            /* Stacks the action row cleanly on smaller mobile viewports */
+            .hero-action-row {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .pill-btn {
+                width: 80%;
+                font-size: 16px;
+                padding: 8px 20px;
+            }
+
             .business-links { gap: 15px; flex-wrap: wrap; }
             .business-links a { font-size: 12px; }
             section { padding: 0; min-height: auto; }
@@ -414,8 +461,18 @@
                         </video>
                     </div>
                     
+                    <!-- Centered Title Layer with Embedded CTA Actions -->
                     <div class="logo-overlay">
-                        <img src="https://gavinoriley.github.io/assets/ScreenHomePageOver.png" alt="Hamachi the Psychotic Killer game title logo">
+                        <div class="hero-content-wrapper">
+                            <!-- New Logo Graphic Asset Loaded Directly Here -->
+                            <img src="https://gavinoriley.github.io/assets/ScreenHomePageOver.png" alt="Hamachi the Psychotic Killer game title logo">
+                            
+                            <!-- Balanced Two-Pill Alignment Block -->
+                            <div class="hero-action-row">
+                                <a href="#" class="pill-btn" onclick="openTrailerWindow(event)">Watch Trailer</a>
+                                <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank" rel="noopener noreferrer" class="pill-btn">Buy Game</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -453,9 +510,7 @@
                 </a>
             </section>
             
-            <section class="video-section">
-                <iframe src="https://www.youtube.com/embed/VbFZFto8Naw" title="Hamachi the Psychotic Killer - Gameplay Trailer #2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </section>
+            <!-- Note: Embedded Video Player Section has been completely removed from this point -->
             
             <section class="roadblock-section">
                 <img src="https://gavinoriley.github.io/assets/3BLOCkRESTHAMACHI.png" alt="Roadblock and gameplay features for Hamachi the Psychotic Killer">
@@ -521,6 +576,22 @@
                 }
             });
         });
+
+        // Dedicated Native Window Launcher for Trailer Window Popup
+        function openTrailerWindow(event) {
+            event.preventDefault();
+            const width = 1280;
+            const height = 720;
+            // Center the popup directly on the viewer's screen coordinate grid
+            const left = (screen.width - width) / 2;
+            const top = (screen.height - height) / 2;
+            
+            window.open(
+                "https://www.youtube.com/watch?v=VbFZFto8Naw", 
+                "HamachiTrailerWindow", 
+                `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no`
+            );
+        }
     </script>
 </body>
 </html>
