@@ -63,7 +63,7 @@
         .menu-toggle {
             position: fixed;
             top: 40px; 
-            left: 60px; /* Kept your precise manual tracking placement */
+            left: 60px; 
             width: 28px;
             height: 18px;
             background: none;
@@ -71,7 +71,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center; /* Symmetrically centers the shorter middle line */
+            align-items: center; 
             z-index: 200;
         }
         .menu-toggle span {
@@ -81,7 +81,6 @@
             background-color: #fff;
             border-radius: 1px;
             transition: all 0.3s ease-in-out;
-            /* Deep anti-glare drop outline to keep the white bars visible against any image asset color */
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.9);
         }
         /* Custom line-length variance: Top Long, Middle Short, Bottom Long */
@@ -133,12 +132,6 @@
             color: #ff4444;
             transform: scale(1.05);
         }
-        .nav-overlay a.buy-game-link {
-            color: #ffdd88;
-        }
-        .nav-overlay a.buy-game-link:hover {
-            color: #e6b55c;
-        }
         .nav-overlay a.dev-room-link {
             animation: demonic-glow-pulse 1.8s ease-in-out infinite;
         }
@@ -176,6 +169,24 @@
             background-color: #000000;
             padding: 0;
             min-height: 0;
+        }
+        
+        /* Dark corner-fade protection overlay wrapper */
+        .hero-image-container {
+            position: relative;
+            width: 100vw;
+            display: block;
+        }
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 1), 
+                        inset 0 0 40px rgba(0, 0, 0, 1);
+            pointer-events: none;
         }
 
         /* Demonic Pulse Animation */
@@ -347,9 +358,10 @@
 
     <nav class="nav-overlay">
         <a href="https://hamachithepsychotickiller.com/about/" class="menu-link">GAME INFO</a>
-        <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank" class="buy-game-link menu-link">BUY GAME</a>
+        <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank" class="menu-link">BUY GAME</a>
         <a href="https://itch.io/embed-upload/16876356?color=333333" target="_blank" class="menu-link">PLAY ONLINE DEMO</a>
         <a href="https://hamachithepsychotickiller.com/devroom/" class="dev-room-link menu-link">DEV ROOM</a>
+        <a href="mailto:img.oriley@gmail.com?subject=Contact%20from%20Hamachi%20the%20Psychotic%20Killer%20page" class="menu-link">CONTACT</a>
         <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3355690/manuals/cbeecc8fd965c68b6d64b82a593dafd5da4b0412/2hamachi-the-psychotic-killer-manual.pdf?t=1746692821" target="_blank" class="menu-link" style="font-size: 20px; color: #888;">GAME MANUAL</a>
     </nav>
 
@@ -369,7 +381,9 @@
         <main id="container">
             
             <section class="title-section">
-                <img src="https://gavinoriley.github.io/assets/ScreenshotHomePage.png" alt="Hamachi the Psychotic Killer game title logo">
+                <div class="hero-image-container">
+                    <img src="https://gavinoriley.github.io/assets/ScreenshotHomePage.png" alt="Hamachi the Psychotic Killer game title logo">
+                </div>
                 
                 <div class="carousel">
                     <div class="carousel-inner">
