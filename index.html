@@ -7,7 +7,7 @@
     <meta name="description" content="HAMACHI THE PSYCHOTIC KILLER: The platformer game where you can play as the BAD GUY.">
     <meta name="keywords" content="Hamachi the Psychotic Killer, video game, indie game, action game, 2d game, platformer">
     <meta property="og:title" content="Hamachi the Psychotic Killer">
-    <meta property="og:description" content="HAMACHI THE PSYCHOTIC KILLER: The platformer game where you can play as the BAD GUY.">
+    <meta property="og:description" content="HAMACHI THE PSYYCHOTIC KILLER: The platformer game where you can play as the BAD GUY.">
     <meta property="og:image" content="https://gavinoriley.github.io/assets/ScreenshotHomePage.png">
     <meta property="og:url" content="https://hamachithepsychotickiller.com">
     <meta property="og:type" content="website">
@@ -66,10 +66,11 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #000000;
+            background: #0b0b0d; /* Soft premium cinematic off-black */
             z-index: 9999;
             pointer-events: none;
-            animation: swipeUpwards 0.75s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+            /* 0.5s initial hold delay, 0.85s incredibly silky cubic easing curve */
+            animation: swipeUpwards 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.5s forwards;
         }
 
         @keyframes swipeUpwards {
@@ -87,8 +88,15 @@
             top: 0;
             left: 0;
             width: 100vw;
-            height: 160px;
-            background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%);
+            height: 180px;
+            /* Multi-stop eased shadow gradient to soften layout drop-off completely */
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,0.92) 25%, 
+                rgba(0,0,0,0.65) 55%, 
+                rgba(0,0,0,0.25) 80%, 
+                rgba(0,0,0,0) 100%
+            );
             pointer-events: none;
             z-index: 105;
         }
@@ -315,7 +323,7 @@
             .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
             .top-shadow {
-                height: 110px;
+                height: 120px;
             }
             .nav-overlay a {
                 font-size: 26px;
@@ -369,10 +377,8 @@
 </head>
 <body>
 
-    <!-- Intro Swipe Curtain -->
     <div class="intro-swipe"></div>
 
-    <!-- Framing Top Shadow Layer -->
     <div class="top-shadow"></div>
 
     <button class="menu-toggle" aria-label="Toggle Navigation">
