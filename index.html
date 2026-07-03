@@ -59,6 +59,40 @@
             overflow: hidden;
         }
 
+        /* === INTRO ANIMATION OVERLAY === */
+        .intro-swipe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000000;
+            z-index: 9999;
+            pointer-events: none;
+            animation: swipeUpwards 0.75s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+        }
+
+        @keyframes swipeUpwards {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        /* === TOP GRADIENT SHADOW === */
+        .top-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 160px;
+            background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+            z-index: 105;
+        }
+
         /* === HAMBURGER MENU BUTTON === */
         .menu-toggle {
             position: fixed;
@@ -170,24 +204,6 @@
             padding: 0;
             min-height: 0;
         }
-        
-        /* Dark corner-fade protection overlay wrapper */
-        .hero-image-container {
-            position: relative;
-            width: 100vw;
-            display: block;
-        }
-        .hero-image-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            box-shadow: inset 0 0 100px rgba(0, 0, 0, 1), 
-                        inset 0 0 40px rgba(0, 0, 0, 1);
-            pointer-events: none;
-        }
 
         /* Demonic Pulse Animation */
         @keyframes demonic-glow-pulse {
@@ -298,6 +314,9 @@
             .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+            .top-shadow {
+                height: 110px;
+            }
             .nav-overlay a {
                 font-size: 26px;
             }
@@ -350,6 +369,12 @@
 </head>
 <body>
 
+    <!-- Intro Swipe Curtain -->
+    <div class="intro-swipe"></div>
+
+    <!-- Framing Top Shadow Layer -->
+    <div class="top-shadow"></div>
+
     <button class="menu-toggle" aria-label="Toggle Navigation">
         <span></span>
         <span></span>
@@ -381,9 +406,7 @@
         <main id="container">
             
             <section class="title-section">
-                <div class="hero-image-container">
-                    <img src="https://gavinoriley.github.io/assets/ScreenshotHomePage.png" alt="Hamachi the Psychotic Killer game title logo">
-                </div>
+                <img src="https://gavinoriley.github.io/assets/ScreenshotHomePage.png" alt="Hamachi the Psychotic Killer game title logo">
                 
                 <div class="carousel">
                     <div class="carousel-inner">
