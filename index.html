@@ -137,7 +137,6 @@
             z-index: 10;
         }
 
-        /* Scaled up the container container size */
         .graphic-container {
             height: 440px; 
             width: 100%;
@@ -146,7 +145,6 @@
             justify-content: center;
         }
 
-        /* Increased maximum scaling attributes for the pixel graphics */
         .vessel-graphic {
             height: 100%;
             width: auto;
@@ -269,11 +267,15 @@
 
         const spriteEl = document.getElementById('vesselSprite');
         const dialogueEl = document.getElementById('dialogueText');
+        
         let isProcessingClick = false;
+        let lastDialogueText = ""; // History tracking to prevent direct repetitions
 
         // Initialize with a baseline Hamachi line
         window.addEventListener('DOMContentLoaded', () => {
-            dialogueEl.textContent = hamachiDialogue[Math.floor(Math.random() * hamachiDialogue.length)];
+            const initialText = hamachiDialogue[Math.floor(Math.random() * hamachiDialogue.length)];
+            dialogueEl.textContent = initialText;
+            lastDialogueText = initialText;
         });
 
         // Possession Interaction Mechanics
@@ -281,38 +283,42 @@
             if (isProcessingClick) return;
             isProcessingClick = true;
 
-            // Remove previous animation classes
+            // Clear animation frames safely
             document.body.classList.remove('glitch-flash-hamachi', 'glitch-flash-demon');
-            
-            // Force layout reflow to reset CSS animations cleanly
-            void document.body.offsetWidth;
+            void document.body.offsetWidth; // Force layout engine execution
 
-            // Roll probability mechanics: 80% Hamachi, 20% Demon
+            // Balanced Probability Mechanics: 60% Hamachi (0.00 - 0.59), 40% Demon (0.60 - 0.99)
             const roll = Math.random();
+            let selectedText = "";
             
-            if (roll < 0.80) {
-                // Hamachi State Chosen
+            if (roll < 0.60) {
+                // Hamachi State Active
                 document.body.classList.add('glitch-flash-hamachi');
                 dialogueEl.style.color = '#dddddd';
+                spriteEl.src = hamachiImages[0];
                 
-                const randomImg = hamachiImages[Math.floor(Math.random() * hamachiImages.length)];
-                const randomText = hamachiDialogue[Math.floor(Math.random() * hamachiDialogue.length)];
+                // Continuous filtering loop until a fresh text string is fetched
+                do {
+                    selectedText = hamachiDialogue[Math.floor(Math.random() * hamachiDialogue.length)];
+                } while (selectedText === lastDialogueText);
                 
-                spriteEl.src = randomImg;
-                dialogueEl.textContent = randomText;
             } else {
-                // Demon State Chosen
+                // Demon State Active
                 document.body.classList.add('glitch-flash-demon');
                 dialogueEl.style.color = '#ff3333';
+                spriteEl.src = demonImages[0];
                 
-                const randomImg = demonImages[Math.floor(Math.random() * demonImages.length)];
-                const randomText = demonDialogue[Math.floor(Math.random() * demonDialogue.length)];
-                
-                spriteEl.src = randomImg;
-                dialogueEl.textContent = randomText;
+                // Continuous filtering loop until a fresh text string is fetched
+                do {
+                    selectedText = demonDialogue[Math.floor(Math.random() * demonDialogue.length)];
+                } while (selectedText === lastDialogueText);
             }
 
-            // Unlock click input once animations settle
+            // Update text element and store reference globally
+            dialogueEl.textContent = selectedText;
+            lastDialogueText = selectedText;
+
+            // Release click block
             setTimeout(() => {
                 isProcessingClick = false;
             }, 180);
