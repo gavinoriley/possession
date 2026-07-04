@@ -210,8 +210,8 @@
         <div class="nav-links-wrapper">
             <a href="https://hamachithepsychotickiller.com">HOME</a>
             <a href="https://hamachithepsychotickiller.com/about/">GAME INFO</a>
-            <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank">BUY GAME</a>
             <a href="https://itch.io/embed-upload/16876356?color=333333" target="_blank">PLAY ONLINE DEMO</a>
+            <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank">BUY GAME</a>
             <a href="https://hamachithepsychotickiller.com/devroom/" class="dev-room-link">DEV ROOM</a>
             <a href="mailto:img.oriley@gmail.com?subject=Contact%20from%20Hamachi%20the%20Psychotic%20Killer%20page">CONTACT</a>
         </div>
@@ -269,13 +269,17 @@
         const dialogueEl = document.getElementById('dialogueText');
         
         let isProcessingClick = false;
-        let lastDialogueText = ""; // History tracking to prevent direct repetitions
+        
+        // State tracking variables for strict alternation and repetition blocking
+        let nextSpeaker = 'demon'; // The layout loads with Hamachi text, so the first click must be Demon
+        let lastHamachiText = "";
+        let lastDemonText = "";
 
         // Initialize with a baseline Hamachi line
         window.addEventListener('DOMContentLoaded', () => {
             const initialText = hamachiDialogue[Math.floor(Math.random() * hamachiDialogue.length)];
             dialogueEl.textContent = initialText;
-            lastDialogueText = initialText;
+            lastHamachiText = initialText;
         });
 
         // Possession Interaction Mechanics
@@ -287,38 +291,42 @@
             document.body.classList.remove('glitch-flash-hamachi', 'glitch-flash-demon');
             void document.body.offsetWidth; // Force layout engine execution
 
-            // True 50/50 Split Mechanics: 50% Hamachi (0.00 - 0.49), 50% Demon (0.50 - 0.99)
-            const roll = Math.random();
             let selectedText = "";
             
-            if (roll < 0.50) {
-                // Hamachi State Active
-                document.body.classList.add('glitch-flash-hamachi');
-                dialogueEl.style.color = '#dddddd';
-                spriteEl.src = hamachiImages[0];
-                
-                // Continuous filtering loop until a fresh text string is fetched
-                do {
-                    selectedText = hamachiDialogue[Math.floor(Math.random() * hamachiDialogue.length)];
-                } while (selectedText === lastDialogueText);
-                
-            } else {
-                // Demon State Active
+            // Strict Toggle Sequence Logic
+            if (nextSpeaker === 'demon') {
+                // Demon Turn Active
                 document.body.classList.add('glitch-flash-demon');
                 dialogueEl.style.color = '#ff3333';
                 spriteEl.src = demonImages[0];
                 
-                // Continuous filtering loop until a fresh text string is fetched
+                // Select a quote that doesn't match the demon's previous line
                 do {
                     selectedText = demonDialogue[Math.floor(Math.random() * demonDialogue.length)];
-                } while (selectedText === lastDialogueText);
+                } while (selectedText === lastDemonText);
+                
+                lastDemonText = selectedText;
+                nextSpeaker = 'hamachi'; // Shift state to Hamachi for the next click
+                
+            } else {
+                // Hamachi Turn Active
+                document.body.classList.add('glitch-flash-hamachi');
+                dialogueEl.style.color = '#dddddd';
+                spriteEl.src = hamachiImages[0];
+                
+                // Select a quote that doesn't match hamachi's previous line
+                do {
+                    selectedText = hamachiDialogue[Math.floor(Math.random() * hamachiDialogue.length)];
+                } while (selectedText === lastHamachiText);
+                
+                lastHamachiText = selectedText;
+                nextSpeaker = 'demon'; // Shift state to Demon for the next click
             }
 
-            // Update text element and store reference globally
+            // Render text element to the screen
             dialogueEl.textContent = selectedText;
-            lastDialogueText = selectedText;
 
-            // Release click block
+            // Release input block after flash clears
             setTimeout(() => {
                 isProcessingClick = false;
             }, 180);
