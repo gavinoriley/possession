@@ -112,8 +112,21 @@
             visibility: visible;
         }
         
+        /* Interactive Background Canvas for Menu Effect */
+        #menuBgCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         /* Layout Wrappers inside Menu Overlay */
         .nav-links-wrapper {
+            position: relative;
+            z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -140,15 +153,15 @@
         .nav-overlay a:nth-child(1):hover { color: #ff5577; } /* Home - Red */
         .nav-overlay a:nth-child(2):hover { color: #00e676; } /* Game Info - Green */
         .nav-overlay a:nth-child(3):hover { color: #38b6ff; } /* Play Demo - Blue */
-        .nav-overlay a:nth-child(4):hover { color: #ffd700; } /* Buy Game - Yellow */
+        .nav-overlay a:nth-child(4):hover { color: #ffd700; } /* Steam Page - Yellow */
         .nav-overlay a:nth-child(5):hover { color: #ff5577; } /* Dev Room - Red */
         .nav-overlay a:nth-child(6):hover { color: #00e676; } /* Contact - Green */
         .nav-overlay a:nth-child(7):hover { color: #38b6ff; } /* Synopsis - Blue */
         .nav-overlay a:nth-child(8):hover { color: #ffd700; } /* Wallpaper - Yellow */
-        .nav-overlay a:nth-child(9):hover { color: #ffd700; } /* Game Manual - Yellow */
 
         /* Synopsis Layout Overlay Styles */
         .synopsis-container {
+            z-index: 10;
             display: flex;
             width: 90%;
             max-width: 1100px;
@@ -229,6 +242,125 @@
             display: inline-block;
             width: 140px;
             flex-shrink: 0;
+        }
+
+        /* === CONTACT PANEL (ported neon aesthetic from homepage) === */
+        .gta-pill-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 40px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 1.5px solid rgba(255, 42, 117, 0.35);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7), inset 0 0 12px rgba(255, 42, 117, 0.08);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, background-color, box-shadow, border-color;
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .gta-pill-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(circle, rgba(255, 42, 117, 0.35) 0%, rgba(255, 42, 117, 0) 70%);
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .gta-pill-btn:hover {
+            color: #ffffff;
+            border-color: rgba(255, 105, 180, 0.85);
+            background: rgba(255, 42, 117, 0.22);
+            box-shadow: 
+                0 0 35px rgba(255, 42, 117, 0.45),
+                0 0 70px rgba(255, 42, 117, 0.2),
+                inset 0 0 20px rgba(255, 105, 180, 0.3);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .gta-pill-btn:hover::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .contact-container {
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 850px;
+            max-height: 85vh;
+            overflow-y: auto;
+            gap: 25px;
+            padding: 20px 10px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+            position: absolute;
+        }
+        .contact-container.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            position: relative;
+            transform: translateY(0);
+        }
+        .contact-container .pub-op-header {
+            border-bottom: 1px solid rgba(255, 42, 117, 0.4);
+            width: 100%;
+            padding-bottom: 16px;
+        }
+        .contact-container .pub-op-title {
+            color: #ff2a75;
+            text-shadow: 0 0 20px rgba(255, 42, 117, 0.5);
+            font-size: 32px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .contact-btn-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .contact-btn-row .gta-pill-btn {
+            width: 230px;
+            padding: 16px 20px;
+        }
+        .copy-email-btn.copied {
+            background: rgba(0, 255, 102, 0.25) !important;
+            border-color: #00ff66 !important;
+            color: #00ff66 !important;
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.5) !important;
         }
 
         /* === SOCIAL DOCK & DROPDOWN STYLES === */
@@ -515,18 +647,18 @@
     </button>
 
     <nav class="nav-overlay" id="mainNavOverlay">
+        <canvas id="menuBgCanvas"></canvas>
         
         <!-- Navigation Menu Links Layer -->
         <div class="nav-links-wrapper" id="menuLinksWrapper">
             <a href="https://hamachithepsychotickiller.com" class="menu-link">HOME</a>
             <a href="https://hamachithepsychotickiller.com/about/" class="menu-link">GAME INFO</a>
             <a href="https://itch.io/embed-upload/16876356?color=333333" target="_blank" class="menu-link">PLAY DEMO</a>
-            <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank" class="menu-link">BUY GAME</a>
+            <a href="https://store.steampowered.com/app/3355690/Hamachi_the_Psychotic_Killer/" target="_blank" class="menu-link">STEAM PAGE</a>
             <a href="https://hamachithepsychotickiller.com/devroom/" class="menu-link">DEV ROOM</a>
-            <a href="mailto:img.oriley@gmail.com?subject=Contact%20from%20Hamachi%20the%20Psychotic%20Killer%20page" class="menu-link">CONTACT</a>
+            <a href="#" class="menu-link" id="contactTriggerBtn">CONTACT</a>
             <a href="#" class="menu-link" id="synopsisTriggerBtn">SYNOPSIS</a>
             <a href="https://gavinoriley.github.io/assets/HamaWallPaper.zip" download="HamachiWallpaper.zip" class="menu-link mobile-hide">WALLPAPER</a>
-            <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3355690/manuals/cbeecc8fd965c68b6d64b82a593dafd5da4b0412/2hamachi-the-psychotic-killer-manual.pdf?t=1746692821" target="_blank" class="menu-link" style="font-size: 20px; color: #888;">GAME MANUAL</a>
         </div>
 
         <!-- Integrated Synopsis Content Layer -->
@@ -548,9 +680,19 @@
                 <div class="metadata-row"><strong>TITLE:</strong> Hamachi the Psychotic Killer</div>
                 <div class="metadata-row"><strong>GENRE:</strong> Action, Indie</div>
                 <div class="metadata-row"><strong>DEVELOPER:</strong> gavinoriley</div>
-                <div class="metadata-row"><strong>PUBLISHER:</strong> gavinoriley</div>
+                <div class="metadata-row"><strong>PUBLISHER:</strong> Self-Published</div>
                 <div class="metadata-row"><strong>RELEASE DATE:</strong> Feb 27, 2026</div>
                 <div class="metadata-row"><strong>PLATFORM:</strong> Windows/Mac</div>
+            </div>
+        </div>
+
+        <!-- Contact Panel (ported from homepage) -->
+        <div class="contact-container" id="contactContentPanel">
+            <div class="pub-op-header">
+                <h2 class="pub-op-title">GET IN TOUCH / REQUEST PITCH DECK</h2>
+            </div>
+            <div class="contact-btn-row">
+                <button class="gta-pill-btn copy-email-btn" id="copyEmailBtn">Copy Email</button>
             </div>
         </div>
 
@@ -614,13 +756,77 @@
     </main>
 
     <script>
+        /* === MENU FLOATING RED CIRCLES BACKGROUND (ported from homepage) === */
+        const canvas = document.getElementById('menuBgCanvas');
+        const ctx = canvas.getContext('2d');
+        let animFrameId = null;
+        let shapesArr = [];
+
+        function resizeMenuCanvas() {
+            if (!canvas) return;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeMenuCanvas);
+
+        function drawShape(x, y, size, color) {
+            ctx.save();
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function renderMenuBackground() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            shapesArr.forEach(s => {
+                s.x += s.vx;
+                s.y += s.vy;
+                if (s.x < 0 || s.x > canvas.width) s.vx *= -1;
+                if (s.y < 0 || s.y > canvas.height) s.vy *= -1;
+                drawShape(s.x, s.y, s.size, s.color);
+            });
+            animFrameId = requestAnimationFrame(renderMenuBackground);
+        }
+
+        function startMenuBgAnimation() {
+            resizeMenuCanvas();
+            shapesArr = [];
+            for (let i = 0; i < 15; i++) {
+                shapesArr.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.6,
+                    vy: (Math.random() - 0.5) * 0.6,
+                    size: 4 + Math.random() * 6,
+                    color: 'rgba(255, 42, 117, 0.35)'
+                });
+            }
+            if (!animFrameId) renderMenuBackground();
+        }
+
+        function stopMenuBgAnimation() {
+            if (animFrameId) {
+                cancelAnimationFrame(animFrameId);
+                animFrameId = null;
+            }
+            if (ctx && canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+            shapesArr = [];
+        }
+
         // Menu & Overlay Control Interface
         const menuToggle = document.querySelector('.menu-toggle');
         const navOverlay = document.getElementById('mainNavOverlay');
         const menuLinks = document.querySelectorAll('.menu-link');
         const menuLinksWrapper = document.getElementById('menuLinksWrapper');
         const synopsisTriggerBtn = document.getElementById('synopsisTriggerBtn');
+        const contactTriggerBtn = document.getElementById('contactTriggerBtn');
         const synopsisContentPanel = document.getElementById('synopsisContentPanel');
+        const contactContentPanel = document.getElementById('contactContentPanel');
+        const copyEmailBtn = document.getElementById('copyEmailBtn');
 
         function toggleMenu() {
             const isClosing = menuToggle.classList.contains('open');
@@ -628,18 +834,34 @@
             navOverlay.classList.toggle('open');
 
             if (isClosing) {
+                stopMenuBgAnimation();
                 setTimeout(() => {
                     menuLinksWrapper.classList.remove('hidden');
                     synopsisContentPanel.classList.remove('active');
+                    if (contactContentPanel) contactContentPanel.classList.remove('active');
                 }, 400);
+            } else {
+                startMenuBgAnimation();
             }
+        }
+
+        function openContactPanel(e) {
+            if (e) e.preventDefault();
+            if (!navOverlay.classList.contains('open')) {
+                menuToggle.classList.add('open');
+                navOverlay.classList.add('open');
+                startMenuBgAnimation();
+            }
+            menuLinksWrapper.classList.add('hidden');
+            if (synopsisContentPanel) synopsisContentPanel.classList.remove('active');
+            if (contactContentPanel) contactContentPanel.classList.add('active');
         }
 
         menuToggle.addEventListener('click', toggleMenu);
 
         menuLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                if (link === synopsisTriggerBtn) return; 
+                if (link === synopsisTriggerBtn || link === contactTriggerBtn) return; 
                 if (navOverlay.classList.contains('open')) {
                     toggleMenu();
                 }
@@ -650,11 +872,43 @@
             e.preventDefault();
             e.stopPropagation(); 
             menuLinksWrapper.classList.add('hidden');
+            if (contactContentPanel) contactContentPanel.classList.remove('active');
             synopsisContentPanel.classList.add('active');
         });
 
+        if (contactTriggerBtn) {
+            contactTriggerBtn.addEventListener('click', openContactPanel);
+        }
+
+        if (copyEmailBtn) {
+            copyEmailBtn.addEventListener('click', () => {
+                const emailToCopy = "img.oriley@gmail.com";
+                navigator.clipboard.writeText(emailToCopy).then(() => {
+                    copyEmailBtn.textContent = "Email Copied!";
+                    copyEmailBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyEmailBtn.textContent = "Copy Email";
+                        copyEmailBtn.classList.remove('copied');
+                    }, 2500);
+                }).catch(() => {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = emailToCopy;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(textArea);
+                    copyEmailBtn.textContent = "Email Copied!";
+                    copyEmailBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyEmailBtn.textContent = "Copy Email";
+                        copyEmailBtn.classList.remove('copied');
+                    }, 2500);
+                });
+            });
+        }
+
         navOverlay.addEventListener('click', (e) => {
-            if (e.target === navOverlay || e.target === synopsisContentPanel) {
+            if (e.target === navOverlay || e.target === synopsisContentPanel || e.target === contactContentPanel) {
                 toggleMenu();
             }
         });
@@ -662,6 +916,11 @@
         synopsisContentPanel.addEventListener('click', (e) => {
             e.stopPropagation();
         });
+        if (contactContentPanel) {
+            contactContentPanel.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
 
         // Share Menu Toggle & Copy Link Engine
         const shareEngineTrigger = document.getElementById('shareEngineTrigger');
