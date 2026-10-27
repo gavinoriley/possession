@@ -70,9 +70,56 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 22px;
+        }
+
+        /* Frosted bar background lives on a pseudo-element so only its opacity is animated (no backdrop-filter transition = no flicker) */
+        .top-nav-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
             background: rgba(10, 10, 10, 0.55);
             backdrop-filter: blur(18px) saturate(140%);
             -webkit-backdrop-filter: blur(18px) saturate(140%);
+            opacity: 1;
+            transition: opacity 0.4s ease;
+            will-change: opacity;
+        }
+        .top-nav-bar.menu-open::before { opacity: 0; }
+
+        /* Centered logo in the nav bar */
+        .nav-center-logo {
+            position: absolute;
+            top: env(safe-area-inset-top, 0px);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 205;
+        }
+        .nav-center-logo img {
+            display: block;
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            aspect-ratio: 1010 / 233;
+            object-fit: contain;
+            cursor: inherit;
+        }
+        @media (max-width: 560px) {
+            .nav-center-logo {
+                position: static;
+                transform: none;
+                flex: 1 1 0;
+                min-width: 0;
+                align-self: stretch;
+                padding: 5px 10px;
+            }
         }
 
         /* MENU */
@@ -134,11 +181,12 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transition: opacity 0.4s ease, visibility 0.4s ease, background-color 1.2s ease-in-out;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
             overflow-y: auto;
             overscroll-behavior: contain;
         }
         .nav-overlay.open {
+            transition: opacity 0.4s ease, visibility 0.4s ease, background-color 1.2s ease-in-out;
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
@@ -173,6 +221,7 @@
         .nav-overlay a:nth-child(6):hover { color: #3a9a4a; }
         .nav-overlay a:nth-child(7):hover { color: #3a6aaa; }
         .nav-overlay a:nth-child(8):hover { color: #c9a83a; }
+        .nav-overlay a:nth-child(9):hover { color: #c33a3a; }
 
         .panel {
             max-width: 640px;
@@ -451,6 +500,8 @@
             <span></span>
         </button>
 
+        <div class="nav-center-logo"><img src="https://gavinoriley.github.io/assets/hamanavibar.png" alt="Hamachi the Psychotic Killer" width="1010" height="233" decoding="async"></div>
+
         <div class="hero-socials">
             <div class="x-hover-wrapper" style="position:relative;">
                 <a href="https://x.com/imgavinoriley" target="_blank" rel="noopener noreferrer" aria-label="X">
@@ -463,7 +514,7 @@
             <a href="https://www.youtube.com/@hamachithepsychotickiller" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                 <img src="https://gavinoriley.github.io/assets/whiteyoutube.png" alt="YouTube">
             </a>
-            <a href="https://www.tiktok.com/@hamachithepsychokiller" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@hamachi_psychotickiller" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                 <img src="https://gavinoriley.github.io/assets/whitetiktok.png" alt="TikTok">
             </a>
             <a href="https://hamachithepsychotickiller.com/possession/" aria-label="Possession">
@@ -501,6 +552,7 @@
             <a href="#" class="menu-link" id="contactTriggerBtn">contact</a>
             <a href="#" class="menu-link" id="synopsisTriggerBtn">synopsis</a>
             <a href="https://gavinoriley.github.io/assets/Hama_WallPaper.zip" download class="menu-link">wallpaper</a>
+            <a href="https://hamachithepsychotickiller.com/publishingpartnerships/" class="menu-link">publishing</a>
         </div>
 
         <div class="panel" id="synopsisContentPanel">
@@ -741,6 +793,26 @@
                 isProcessingClick = false;
             }, 180);
         });
+    </script>
+    <script>
+        // NAV BAR STATE SYNC (matches homepage): fades the frosted bar out while the menu overlay is open
+        (function () {
+            var btn = document.getElementById('menuToggleBtn');
+            var overlay = document.getElementById('mainNavOverlay');
+            var bar = document.querySelector('.top-nav-bar');
+            if (!btn || !overlay || !bar) return;
+            btn.setAttribute('aria-controls', 'mainNavOverlay');
+            var sync = function () {
+                var open = overlay.classList.contains('open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                bar.classList.toggle('menu-open', open);
+            };
+            new MutationObserver(sync).observe(overlay, { attributes: true, attributeFilter: ['class'] });
+            sync();
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('open')) btn.click();
+            });
+        })();
     </script>
 </body>
 </html>
